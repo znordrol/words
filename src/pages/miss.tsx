@@ -12,6 +12,13 @@ const Home: NextPage = () => {
     from: { opacity: 0 },
   });
 
+  const props2 = useSpring({
+    to: { opacity: 1 },
+    delay: 5000,
+    config: { duration: 1000 },
+    from: { opacity: 0 },
+  });
+
   return (
     <>
       <Seo />
@@ -20,9 +27,10 @@ const Home: NextPage = () => {
           <div className='layout flex min-h-screen flex-col items-center justify-center text-center'>
             <animated.div
               style={props1}
-              className='text-xl font-bold md:text-5xl'
+              className='text-2xl font-bold md:text-8xl'
             >
-              Here lies my words for you {'<'}3
+              I miss you
+              <animated.span style={props2}> ayanggg ❤️</animated.span>
             </animated.div>
           </div>
         </section>
