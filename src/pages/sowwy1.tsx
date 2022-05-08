@@ -1,10 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import { animated, useSpring } from '@react-spring/web';
 import type { NextPage } from 'next';
+import { useTheme } from 'next-themes';
 
+import ColorModeToggle from '@/components/ColorModeToggle';
 import Seo from '@/components/Seo';
 
 const Home: NextPage = () => {
+  const { theme, setTheme } = useTheme();
   const words = [
     {
       first: 'Sorry ya',
@@ -108,7 +111,7 @@ const Home: NextPage = () => {
     <>
       <Seo />
       <main>
-        <section className='bg-black text-primary-50'>
+        <section className=''>
           <div className='layout flex min-h-screen flex-col items-center justify-center gap-y-4 text-center'>
             {words.map(({ first, last, spring1, spring2 }) => (
               <animated.div
@@ -120,6 +123,9 @@ const Home: NextPage = () => {
                 <animated.span style={spring2}>{last}</animated.span>
               </animated.div>
             ))}
+          </div>
+          <div className='sticky bottom-0 left-full h-16 w-16'>
+            <ColorModeToggle value={theme} onChange={setTheme} />
           </div>
         </section>
       </main>
