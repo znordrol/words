@@ -1,40 +1,49 @@
-/* eslint-disable @next/next/no-img-element */
-import { animated, useSpring } from '@react-spring/web';
 import type { NextPage } from 'next';
-import { useTheme } from 'next-themes';
 
-import ColorModeToggle from '@/components/ColorModeToggle';
+import Accent from '@/components/Accent';
+import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
+import WordCard, { Word } from '@/components/WordCard';
+import clsxm from '@/lib/clsxm';
+
+const words: Word[] = [
+  {
+    title: 'Miss u',
+    content:
+      'As the title says, this page shows you words about me missing you so much',
+    path: '/miss',
+    slug: 'miss',
+    date: '22/3/2022',
+  },
+  {
+    title: 'Sowwy v1.0',
+    content:
+      'If you navigate to this page, you will find words about me apologizing to you for a certain event',
+    path: '/sowwy1',
+    slug: 'sowwy1',
+    date: '17/4/2022',
+  },
+];
 
 const Home: NextPage = () => {
-  const { theme, setTheme } = useTheme();
-
-  const props1 = useSpring({
-    to: { opacity: 1 },
-    delay: 2000,
-    config: { duration: 1000 },
-    from: { opacity: 0 },
-  });
-
   return (
-    <>
+    <Layout>
       <Seo />
       <main>
-        <section className=''>
-          <div className='layout flex min-h-screen flex-col items-center justify-center text-center'>
-            <animated.div
-              style={props1}
-              className='text-xl font-bold md:text-5xl'
-            >
-              Here lies my words for you {'<'}3
-            </animated.div>
-            <div className='sticky bottom-0 left-full flex h-20 w-20 items-center justify-center'>
-              <ColorModeToggle value={theme} onChange={setTheme} />
+        <section className={clsxm('flex flex-col justify-center')}>
+          <article className='layout space-y-10 py-8'>
+            <h1 className='text-3xl md:text-5xl 2xl:text-6xl'>
+              <Accent>Here lies my words for you {'<'}3</Accent>
+            </h1>
+            <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+              {words.map((word) => (
+                <WordCard word={word} key={word.slug} />
+              ))}
             </div>
-          </div>
+          </article>
         </section>
       </main>
-    </>
+    </Layout>
   );
 };
 
