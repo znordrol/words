@@ -123,9 +123,9 @@ const Home: NextPage = () => {
                 <animated.span style={spring2}>{last}</animated.span>
               </animated.div>
             ))}
-          </div>
-          <div className='sticky bottom-0 left-full h-16 w-16'>
-            <ColorModeToggle value={theme} onChange={setTheme} />
+            <div className='sticky bottom-0 left-full flex h-20 w-20 items-center justify-center'>
+              <ColorModeToggle value={theme} onChange={setTheme} />
+            </div>
           </div>
         </section>
       </main>
